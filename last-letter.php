@@ -48,9 +48,7 @@ class Last_Letter {
 		add_action( 'edit_user_profile', array( &$this, 'profile_toggle' ) );
 		add_action( 'personal_options_update', array( &$this, 'profile_save' ) );
 		add_action( 'edit_user_profile_update', array( &$this, 'profile_save' ) );	
-		
-		//add_action( 'all', array( &$this, 'dump' ) );
-		
+				
 	}
 	
 	function dump() {
