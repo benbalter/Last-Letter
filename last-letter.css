@@ -1,0 +1,13 @@
+#contentToggle { width: 100%; background: whiteSmoke; border: 1px solid #aaa; height: 150px; text-align: center; padding-top: 100px; cursor: pointer; margin-bottom: 20px; }
+#contentToggle.minimized { height: 20px; padding-top: 0px; border:0; background: none; text-align: right;}
+#contentToggle a {color: #333; text-decoration: none;}
+#contentToggle:hover { border: 1px solid #000; }
+#contentToggle.minimized:hover {border: none;}
+#contentToggle.minimized a { color: #21759B;}
+#contentToggle.minimized a:hover {text-decoration: underline; }
+
+.recipientDiv {  clear: both; height: 30px; }
+.recipientDiv .description {text-align: center; }
+.recipientName, .recipientEmail { float: left; clear: none; width: 250px; }
+.recipientName { margin-right: 50px; width: 300px; }
+.recipientRemove { float: right; margin-top: 3px; display: none; margin-right: 5px; }
