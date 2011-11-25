@@ -212,7 +212,7 @@ class Last_Letter {
 	 */
 	function check_last_seen( ) {
 			
-		$letters = get_posts( array( 'post-type' => 'letter', 'post_status' => array( 'publish', 'private' ) ) );
+		$letters = get_posts( array( 'post_type' => 'letter', 'post_status' => array( 'publish', 'private' ) ) );
 		
 		//now in seconds
 		$now = time();
