@@ -48,11 +48,11 @@ class Last_Letter {
 		add_action( 'edit_user_profile', array( &$this, 'profile_toggle' ) );
 		add_action( 'personal_options_update', array( &$this, 'profile_save' ) );
 		add_action( 'edit_user_profile_update', array( &$this, 'profile_save' ) );	
-				
-	}
 	
-	function dump() {
-		echo current_filter() . "\r\n";
+		//cron	
+		register_activation_hook( __FILE__, array( &$this, 'activation' ) );
+		register_deactivation_hook( __FILE__, array( &$this, 'deactivation' ) );
+
 	}
 	
 	/**
