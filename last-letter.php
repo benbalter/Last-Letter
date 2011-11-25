@@ -59,14 +59,14 @@ class Last_Letter {
 	 * Start cron job
 	 */
 	function activation() {
-		wp_schedule_event( time(), 'hourly', array( &$this, 'last-letter-hourly' ) ); 
+		wp_schedule_event( time(), 'hourly', 'last-letter-hourly' ); 
 	}
 	
 	/**
 	 * Stop cron job
 	 */
 	function deactivation() {
-		wp_clear_scheduled_hook( array( &$this, 'last-letter-hourly' ) );
+		wp_clear_scheduled_hook( 'last-letter-hourly' );
 	}
 	
 	/**
