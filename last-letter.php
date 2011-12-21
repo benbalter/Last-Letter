@@ -273,9 +273,10 @@ class Last_Letter {
 		$headers = 'From: "' . $author->display_name . '" <' . $author->user_email . '>' . "\r\n";
 		$headers .= 'CC: "' . $author->display_name . '" <' . $author->user_email . '>' . "\r\n";	
 		
-		if ( wp_mail( $this->get_recipients( $letter->ID), $letter->post_title, apply_filters('the_content', $letter->post_content ), $headers ) )
+		if ( wp_mail( $this->get_recipients( $letter->ID), $letter->post_title, apply_filters('the_content', $letter->post_content ), $headers ) ) {
 			add_post_meta( $letter->ID, '_last_letter_sent', time(), true );
-	
+			do_action( 'last_letter_sent', $letterID );
+		}
 	}
 	
 	/**
@@ -335,10 +336,15 @@ class Last_Letter {
 		$msg = sprintf( $msg, $letter->post_title, admin_url( 'post.php?action=edit&post=' . $letterID ) );
 			
 		if ( wp_mail( $user->user_email, $this->get_warning_subject( $final ), $msg ) ) {
-			if ( $final ) 
+		
+			if ( $final ) {
 				add_post_meta( $letterID, '_last_letter_final_warning_sent', time(), true );		
-			else 
+				do_action( 'last_letter_final_warning_sent', $letterID );
+			} else { 
 				add_post_meta( $letterID, '_last_letter_warning_sent', time(), true );		
+				do_action( 'last_letter_warning_sent', $letterID );
+			}
+			
 		}
 
 	}
@@ -412,7 +418,9 @@ class Last_Letter {
 		$url = remove_query_arg( 'last-letter-nonce' );
 		$url = remove_query_arg( 'last-letter-checkin', $url );
 		$url = add_query_arg( 'checkedin', true, $url );
-				
+		
+		do_action( 'last_letter_checkin', $userID, $redirect );
+
 		//redirect to prevent dups
 		wp_redirect( $url );
 		
